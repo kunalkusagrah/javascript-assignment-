@@ -1,52 +1,54 @@
 function store() {
-
     var inputName = document.getElementById("name");
     var inputEmail = document.getElementById("email");
     var inputPhn = document.getElementById("phone");
+    // function to validate details
+    validate(inputName.value, inputEmail.value, inputPhn.value);
+    
+}
+
+var validate = (inputName, inputEmail, inputPhn) => {
+    const nameRegex = /^[a-z][a-z\s]*$/;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    inputName.value.match(nameRegex) ? (inputEmail.value.match(emailRegex) ? (inputPhn.value.match(phoneRegex) ? storeInLocal(inputName, inputEmail, inputPhn)
+    : alert("enter a valid phone number !"))
+    : alert("Email is required and should be of form abc@gmail.com "))
+    : alert(" Name is required. Should contain only spaces and letters. No digits / special characters allowed.");
+
+}
+
+// function to store data in local storage
+var storeInLocal = (inputName, inputEmail, inputPhn) => {
     localStorage.setItem("Name", inputName.value);
     localStorage.setItem("Email", inputEmail.value);
     localStorage.setItem("Phone", inputPhn.value);
+    displayData();
+}
 
-console.log(localStorage.getItem("Name"));
-    const tbl = document.getElementById("tbl");
-    const tblBody = document.getElementById("tbody");
+//  function to display data in the screen two
+var displayData = () => {
+    const table = document.getElementById("table");
+    const tableBody = document.getElementById("tbody");
     //  array to store column headings
     const arr = ["Name", "Email", "Phone"];
+    var row = document.createElement("tr");
 
-    // Creating a row to Add column headings
-    let row = document.createElement("tr");
-    //  for adding heading of the columns
-    for (let i = 0; i < 3; ++i) {
-        let thead = document.createElement("th");
-        let text = document.createTextNode(arr[i]);
-        thead.appendChild(text);
-        row.append(thead);
-        // adding styling to column heading
-        thead.style.cssText = 'border: 1px solid black;height: 50px; background : white;font: italic small-caps bold 15px Georgia, serif;';
-    }
-    tblBody.appendChild(row);
-    tbl.appendChild(tblBody);
-    // creating all cells
-    // creating table rows
-    row = document.createElement("tr");
-
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 3; ++j) {
         //  puting the <td> at the end of the table row
         let td = document.createElement("td");
         let text = document.createTextNode(localStorage.getItem(arr[j]));
         td.appendChild(text);
         row.appendChild(td);
-        // adding styling to cells
-        td.style.cssText = 'border: 1px solid white; height: 50px;border-collapse: collapse;background-color: #96D4D4;';
+
     }
 
     // adding the row to the end of the table body
-    tblBody.appendChild(row);
+    tableBody.appendChild(row);
 
-// puting the <tbody> in the <table>
-tbl.appendChild(tblBody);
-// appends <table> into <body>
-// document.getElementById("screen2").appendChild(tbl);
-//  adding styling to the table
-tbl.style.cssText = 'width:80%;border: 2px solid black;border-collapse: collapse;text-align:center;margin:auto;';
-    }
+    // puting the <tbody> in the <table>
+    table.appendChild(tableBody);
+}
+
+
+

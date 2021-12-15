@@ -1,80 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+
     <title>Document</title>
-    
+
     <style>
-        .screen1,  .screen2{
-            width : 48%;
-            min-height: 500px;
-            padding: 1%;
-            margin: auto;
-        }
-        
-
-        .screen1{
-            background-color:crimson;
-            float:left;
-        }
-        .screen2{
-            background-color:cornflowerblue;
-            float:right;
+    body{
+        background-color: aquamarine;
+    }
+        .screen1 {
+            background-color: crimson;
+            /* float: left; */
+            min-height: 600px;
         }
 
-        input{
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+        .screen2 {
+            background-color: cornflowerblue;
+            /* float: right; */
+            min-height: 600px;
+        }
 
-/* Style the submit button */
-button {
-  background-color: #04AA6D;
-  width: 50%;
-  color: white;
-  margin: 25px auto;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-  font: italic small-caps bold 20px/30px Georgia, serif;
-}
-h1{
-    padding: auto;
-    color:darkred;
-}
-</style>
+        h1 {
+            padding: auto;
+            color:rgb(0, 0, 0);
+            font-weight: bold;
+            margin:100px;
+        }
+    </style>
 </head>
+
 <body>
-    <div class = "screen1">
-        <h1> Enter Details</h1>
-        <form action="#">
-            <label for="fname">First name:</label><br>
-            <input type="text" id="name" name="fname" placeholder ="John"><br>
-            <label for="email">Email :</label><br>
-            <input type="email" id="email" name="email" placeholder="abc@gmail.com"><br>
-            <label for="phone">Phone :</label><br>
-            <input type="tel" id="phone" name="lname" placeholder="+91 1234567890"><br>
-            <button onclick="store()" type="button">Save Data</button>
-          </form>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="screen1 col-md-6" >
+            <h1> Enter Details</h1>
+            <form class="form-horizontal" action="#">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="email">Email:</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Phone:</label>
+                    <div class="col-sm-10">
+                      <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                    </div>
+                  </div>
+               
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" onclick="store()" class="btn btn-default">Save Data</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="screen2 col-md-6" id="screen2">
+            <h1> Your data will be fetched here !!! </h1>
+            <table id="table" class="table">
+                <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                    </tr>
+                  </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
     </div>
-    <div class = "screen2" id="screen2">
-        <h1> Your data will be fetched here  !!! </h1>
-        <table id="tbl">
-            <tbody id = "tbody"></tbody>
-        </table>
     </div>
 </body>
 <script src="solution2.js"></script>
+
 </html>
